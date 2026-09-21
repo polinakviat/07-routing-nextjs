@@ -1,21 +1,11 @@
-const tags = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
-
-
-interface SidebarProps {
-  tags?: string[];
-}
-
-export default function Sidebar({ tags = ['Work', 'Todo', 'Personal'] }: SidebarProps) {
-  const pathname = usePathname();
-
-  // Список усіх тегів із додаванням системного тегу 'all'
-  const allTags = ['all', ...tags];
-
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import css from './SidebarNotes.module.css';
+
+
+const tags = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
 
 export default function SidebarDefault() {
   const pathname = usePathname();
