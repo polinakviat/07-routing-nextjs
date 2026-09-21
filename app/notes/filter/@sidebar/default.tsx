@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { TagLink } from '../../../../components/TagLink/TagLink'
 import { usePathname } from 'next/navigation';
 import css from './SidebarNotes.module.css';
 
@@ -33,12 +34,9 @@ export default function SidebarDefault() {
 
             return (
               <li key={tag} className={css.tagItem}>
-                <Link
-                  href={href}
-                  className={`${css.tagLink} ${isActive ? css.active : ''}`}
-                >
-                  #{tag}
-                </Link>
+                <TagLink href={`/notes/filter/${encodeURIComponent(tag)}`}>
+                #{tag}
+              </TagLink>
               </li>
             );
           })}
