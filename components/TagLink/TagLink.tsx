@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import css from './TagLink.module.css';
 
 interface TagLinkProps {
   href: string;
@@ -20,7 +19,6 @@ export function TagLink({ href, children }: TagLinkProps) {
   return (
     <Link
       href={href}
-      className={`${css.tagLink} ${isActive ? css.active : ''}`}
     >
       {children}
     </Link>
