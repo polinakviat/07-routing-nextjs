@@ -3,8 +3,8 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import { fetchNotesByTag } from '../../../../lib/api';
-import NotesClient from '../../../notes/Notes.client';
+import { fetchNotesByTag } from '../../../../../lib/api';
+import NotesClient from '../../Notes.client';
 
 interface PageProps {
   params: Promise<{
