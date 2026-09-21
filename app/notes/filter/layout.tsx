@@ -1,5 +1,4 @@
 import React from 'react';
-import css from './layout.module.css';
 
 interface FilterLayoutProps {
   children: React.ReactNode;
@@ -8,9 +7,9 @@ interface FilterLayoutProps {
 
 export default function FilterLayout({ children, sidebar }: FilterLayoutProps) {
   return (
-    <section className={css.container}>
-      <aside className={css.sidebar}>{sidebar}</aside>
-      <div className={css.notesWrapper}>{children}</div>
+    <section>
+      <aside>{sidebar}</aside>
+      <div>{children}</div>
     </section>
   );
 }
