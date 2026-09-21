@@ -3,18 +3,18 @@ import {
   HydrationBoundary,
   dehydrate,
 } from '@tanstack/react-query';
-import { fetchNoteById } from '../../../../lib/api';
+import { fetchNoteById } from '@/lib/api';
 import NotePreviewClient from './NotePreview.client';
 
-interface NotePreviewProps {
+interface ModalNotePageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function NotePreview({ params }: NotePreviewProps) {
+export default async function InterceptedNoteModalPage({ params }: ModalNotePageProps) {
   const { id } = await params;
   const queryClient = new QueryClient();
 
-  // Заздалегідь виконуємо prefetch даних нотатки на сервері
+  // Заздалегідь завантажуємо дані нотатки у кеш на сервері
   await queryClient.prefetchQuery({
     queryKey: ['note', id],
     queryFn: () => fetchNoteById(id),

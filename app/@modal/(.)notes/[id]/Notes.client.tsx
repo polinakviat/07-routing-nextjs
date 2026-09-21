@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { fetchNotesByTag } from '../../../lib/api';
+import { fetchNotesByTag } from '../../../../lib/api';
 
 interface NotesClientProps {
   tag: string;
