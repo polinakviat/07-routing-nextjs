@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Note } from '@/types/note';
+import type { Note } from '../types/note';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://notehub-api.goit.global';
 const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN;
@@ -17,6 +17,21 @@ export interface FetchNotesResponse {
   totalPages: number;
 }
 
+export interface FetchNotesResponse {
+  notes: Note[];
+  totalPages: number;
+}
+
+// DTO для створення нової нотатки
+export interface CreateNoteDto {
+  title: string;
+  content: string;
+  tag?: string;
+}
+
+/**
+ * Отримання списку нотаток з пагінацією, пошуком та фільтрацією за тегом.
+ */
 export async function fetchNotes(
   page: number = 1,
   perPage: number = 12,
@@ -40,11 +55,17 @@ export async function fetchNotes(
   return response.data;
 }
 
+/**
+ * Отримання однієї нотатки за її ID.
+ */
 export async function fetchNoteById(id: string): Promise<Note> {
   const response = await api.get<Note>(`/notes/${id}`);
   return response.data;
 }
 
+/**
+ * Отримання нотаток за конкретним тегом.
+ */
 export async function fetchNotesByTag(
   tag: string,
   page: number = 1,
@@ -61,4 +82,20 @@ export async function fetchNotesByTag(
 
   const response = await api.get<FetchNotesResponse>('/notes', { params });
   return response.data.notes;
+}
+
+/**
+ * Створення нової нотатки.
+ */
+export async function createNote(data: CreateNoteDto): Promise<Note> {
+  const response = await api.post<Note>('/notes', data);
+  return response.data;
+}
+
+/**
+ * Видалення нотатки за її ID.
+ */
+export async function deleteNote(id: string): Promise<Note> {
+  const response = await api.delete<Note>(`/notes/${id}`);
+  return response.data;
 }
