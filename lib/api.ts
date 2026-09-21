@@ -17,21 +17,12 @@ export interface FetchNotesResponse {
   totalPages: number;
 }
 
-export interface FetchNotesResponse {
-  notes: Note[];
-  totalPages: number;
-}
-
-// DTO для створення нової нотатки
 export interface CreateNoteDto {
   title: string;
   content: string;
   tag?: string;
 }
 
-/**
- * Отримання списку нотаток з пагінацією, пошуком та фільтрацією за тегом.
- */
 export async function fetchNotes(
   page: number = 1,
   perPage: number = 12,
