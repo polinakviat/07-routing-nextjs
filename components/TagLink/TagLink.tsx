@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import css from './TagLink.module.css';
 
 interface TagLinkProps {
   href: string;
@@ -11,7 +12,7 @@ interface TagLinkProps {
 export function TagLink({ href, children }: TagLinkProps) {
   const pathname = usePathname();
 
-  // Перевірка активного маршруту
+  // Логіка активного стану однакова для всіх тегів та для "All notes"
   const isActive =
     pathname === href ||
     (href === '/notes/filter/all' && pathname === '/notes/filter');
@@ -19,6 +20,7 @@ export function TagLink({ href, children }: TagLinkProps) {
   return (
     <Link
       href={href}
+      className={`${css.tagLink} ${isActive ? css.active : ''}`}
     >
       {children}
     </Link>
